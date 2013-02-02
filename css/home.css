@@ -1,0 +1,251 @@
+@media screen and (max-width: 1024px){
+	body {
+	background: #030303;
+	font-size: 18px;
+	font-family: 'Muli', Arial, Tahoma, sans-serif;
+	color: #c3c3c3;
+}
+
+#logo {
+	text-align: center;
+}
+
+#logo img {
+	width: 90%;
+	margin-top: 30px;
+}
+
+#login {
+	text-align: center;
+	margin: 40px auto;
+	width: 70%;
+}
+#forgot{
+	display: none;
+}
+h2 {
+	font-size: 40px;
+}
+h3 {
+	font-size: 30px;
+	color: #4E4E88;
+}
+#credits {
+	display: none;
+}
+#mid {
+	text-align: center;
+	padding: 0;
+	border-top: 2px solid #333;
+	border-bottom: 2px solid #333;
+}
+#mid img {
+	padding: 0;
+	margin: 0;
+}
+label {
+	font-size: 50px;
+	display: block;
+	text-align: left;
+}
+input {
+	height: 100px;
+	font-size: 50px;
+	width: 100%;
+	margin-top: 10px;
+}
+a#signup {
+	font-size: 80px;
+	font-weight: 600;
+	margin: 0;
+}
+a:link, a:hover, a:active, a:visited {
+	color: #bbbbff;
+}
+#footer{
+	text-align: center;
+}
+.submit{
+	right: 0;
+}
+}
+
+@media screen and (min-width: 1024px) {
+
+	body {
+		margin: 0;
+		padding: 0;
+		background-color: #030303;
+		font-family: 'Muli', Arial, Tahoma, sans-serif;
+		font-size: 14px;
+		color: #c3c3c3;
+		text-align: center;
+		text-shadow: 0.1em 0.1em #111;
+	}
+
+	h2 {
+		font-size: 30px;
+		color: #c3c3c3;
+	}
+
+	h3 {
+		font-size: 24px;
+		color: #4E4E88;
+		padding: 10px;
+		margin: 0px;
+	}
+
+	p {
+		font-size: 18px;
+		padding: 10px;
+		margin: 0px;
+	}
+
+	h2 strong {
+		font-size: 48px;
+	}
+	a:link, a:visited, a:active, a:hover {
+		color: #4e4e88;
+		text-decoration: none;
+	}
+
+	input, select, textarea {
+		margin: 2px 0px;
+		padding: 3px 5px;
+		color: #c3c3c3;
+		background-color: #040404;
+		font-family: 'Muli', Arial, Tahoma, sans-serif;
+		width: 180px;
+		height: 20px;
+		border: 1px solid #333333;
+		cursor: pointer;
+		outline: none;
+	}
+
+	.submit {
+		background-color: #4e4e88;
+		width: 100px;
+		margin-right: 3px;
+		padding: 0px;
+		height: 23px;
+	}
+
+	#container {
+		width: 100%;
+		margin: 0px auto;
+		text-align: left;
+	}
+
+	#header {
+		width: 100%;
+		height: 100px;
+		padding-top: 5px;
+	}
+	
+	#forgot{
+		display: inline;
+	}
+
+	#login {
+		width: 50%;
+		float: right;
+		height: 100px;
+		text-align: right;
+	}
+
+	#login form {
+		padding-right: 100px;
+	}
+
+	#logo {
+		width: 50%;
+		float: left;
+		text-align: center;
+		padding-top: 20px;
+	}
+
+	#logo img {
+		width: 320px;
+		margin: 0;
+	}
+
+	#mid {
+		background: #4E4E88 url('./img/gradient.jpg') top center repeat-x;
+		width: 100%;
+		height: 207px;
+		text-align: left;
+	}
+
+	#mid_left {
+		width: 50%;
+		float: left;
+	}
+
+	#mid_left img {
+		margin-bottom: 2px;
+		margin-left: 30px;
+	}
+
+	#mid_right {
+		width: 50%;
+		float: right;
+	}
+	#content {
+		width: 80%;
+		margin: 0px auto;
+	}
+
+	#left {
+		width: 33%;
+		float: left;
+	}
+
+	#right {
+		width: 67%;
+		float: right;
+	}
+
+	#right_left {
+		width: 50%;
+		float: left;
+	}
+
+	#right_right {
+		width: 50%;
+		float: right;
+	}
+
+	#right_footer {
+		clear: both;
+	}
+
+	#footer {
+		width: 100%;
+		text-align: center;
+		padding-top: 30px;
+		clear: both;
+	}
+
+	#footer h2 {
+		margin: 0;
+	}
+
+	a#signup {
+		font-size: 40px;
+		font-weight: 600;
+		margin: 0;
+	}
+
+	#credits {
+		border-top: 1px solid #333;
+		margin-top: 20px;
+		padding-top: 10px;
+		text-align: center;
+		padding-right: 10px;
+		display: block;
+	}
+
+	#credits a:link, #credits a:hover, #credits a:active, #credits a:visited {
+		color: #bbbbff;
+	}
+}
