@@ -3,7 +3,7 @@ var title = document.title;
 function refresh()
 {
 	var oXHR = new XMLHttpRequest();
-	oXHR.open("get", "http://www.socialdoor.it/getNotifications.php", true);
+	oXHR.open("get", "getNotifications.php", true);
 	oXHR.onreadystatechange = function() {
 		if(oXHR.readyState == 4){
 			if(oXHR.status == 200){
