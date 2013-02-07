@@ -1,74 +1,64 @@
 <?php
-	//stanza personale di ogni utente
-	//in questo caso un utente non loggato può visualizzare la stanza, ma non può leggere i post
+	//room
+	//user not logged can see room, but can't see posts
 	
-	//apro la sessione
     session_start();
-    //se non è stato passato nessun id reindirizzo l'utente alla home
     if(!isset($_GET['id']))
         header('location: home.php');
     
-    $id=$_GET['id'];//assegno a id l'id passato in get
+    $id=$_GET['id'];
     
     if(!is_numeric($id)){
     	include "header.php";
-		die("<div id='container'>Hai inserito un id non valido.</div>");
+		die("<div id='container'>ID not valid.</div>");
     }
     
-    //includo le classi mysql, user, post e room
     include "./includes/mysqlclass.class.php";
     include "./includes/user.class.php";
     include "./includes/post.class.php";
     include "./includes/room.class.php";
 
-	//inizializzo l'oggetto mysql e mi connetto al db
     $mysql = new MySqlClass();
     $mysql->connect();
-	//seleziono dal db i dati dell'user e li salvo nell'oggetto owner
     $result = $mysql->query("SELECT * FROM users WHERE idUser = '".$id."'");
     $owner = new user(mysql_fetch_object($result));
-	//se l'utente è loggato controllo se il proprietario della stanza gli ha aperto la porta e gli ha dato quindi i permessi di visualizzare i suoi post
     if(isset($_SESSION['loggedin'])){
-        //se è loggato inizializzo l'oggetto user
         $user = new user($_SESSION['user']);
-		//potrebbe essere stato inserito un id falso nella querystring e potrebbe quindi non esistere nessun user con id corrispondente
-		//effettuo allora un controllo sull'id dell'owner perima di controllare se la porta è stata aperta
+        
         if($owner->getId())
+        	//control if room's owner has opened door to user loggedin
             $opened = $user->canIsee($owner->getId());
     }   
 	
-	//controllo il nome del proprietario della stanza per essere sicuro che l'id passato in querystring sia reale
-	//se il nome è vuoto allora l'id è falso
     if($owner->getName()==""){
-    	//allora owner sarà il Sig. Nessuno nato lo 0 Gennaio dell'anno 0 e che vive nel Mondo dei sogni
-        $owner->setName("Nessuno");
-        $flag=1; //il flag serve a indicare che l'user è il Sig. Nessuno e verrà utilizzato dopo
-        $owner->setBirthday("0 Gennaio dell'anno 0");
-        $owner->setCity("Mondo dei sogni");
+    	//if name is = "", user is nobody
+    	$flag=1;
+        $owner->setName("Chuck Norris");
+        $owner->setBirthday("10/03/1940");
+        $owner->setCity("Ryan (Oklahoma)");
         $opened = 1;
-        $room = new room(0); //se passo 0 al costruttore di room la stanza verrà generata con sfondo nero e scritte blu (predefinito)
+        $room = new room(0); //if parameter is 0, room will be created with standard template
     } else {
-    	//se il nome non è vuoto allora seleziono i dati della stanza dal db e li salvo nell'oggetto room
         $result = $mysql->query("SELECT * FROM rooms WHERE idUser = ".$id);
         $room = mysql_fetch_object($result,'room');
     }  
-	//preparo i metatag title, description e keywords
-    $title = "Stanza di ".$owner->getName()." - SocialDoor";
-    $description = "Stanza di ".$owner->getCompleteName()." su SocialDoor. Iscriviti o accedi per visualizzarla";
-    $keywords = $owner->getCompleteName().",socialdoor,social door,stanza di ".$owner->getCompleteName().",".$owner->getCity().",pagina personale";
-    //includo l'header della stanza
+	//prepare metatags
+    $title = $owner->getName()."'s room - SocialDoor";
+    $description = $owner->getCompleteName()."'s room on SocialDoor. Sign up or login to view it.";
+    $keywords = $owner->getCompleteName().",socialdoor,social door,".$owner->getCompleteName()."'s room,".$owner->getCity().",personal page";
+    
     include "header.php";
 ?>
 <div id="container" style="overflow: scroll">
     <div id="header">
         <div id="right">
             <form action="search.php" method="post" style="margin-top: 10px;">
-                <input type="text" id="search" name="search" placeholder="Cerca..." autocomplete="off">
+                <input type="text" id="search" name="search" placeholder="Search..." autocomplete="off">
             </form>
         </div>
         <div id="left">
-            <h3>Stanza di</h3>
-            <h1><?php echo $owner -> getCompleteName();?></h1>
+            <h1><?php echo $owner -> getCompleteName();?>'s</h1>
+            <h3>Room</h3>
         </div>
         <div id="divFooter"></div>
     </div>
@@ -76,29 +66,22 @@
         <div id="userInfoRight">
             <ul>
                 <li>
-                    Nome: <?php echo $owner -> getCompleteName();?>
+                    Name: <?php echo $owner -> getCompleteName();?>
                 </li>
                 <li>
-                    Nat<?php
-                    //controllo il sesso dell'owner per far stampare natO o natA
-                    if ($owner -> getSex() == 1)
-                        echo "o";
-                    else
-                        echo "a";
-                    ?>
-                    il: <?php echo $owner -> getBirthday();?>
+                   Born on: <?php echo $owner -> getBirthday();?>
                 </li>
                 <li>
-                    Vive a: <?php echo "<a href='http://maps.google.it/maps?hl=it&q=" . $owner -> getCity() . "' target='_blank'>" . $owner -> getCity() . "</a>";?>
+                    Live in: <?php echo "<a href='http://maps.google.it/maps?hl=it&q=" . $owner -> getCity() . "' target='_blank'>" . $owner -> getCity() . "</a>";?>
                 </li>
                 <?php
                		//nel caso dei dati opzionali stampo solo i dati diversi da NULL
                     if ($owner -> getRelationship() != NULL)
-                        echo '<li>Situazione sentimentale: ' . $owner -> getRelationship() . '</li>';           
+                        echo '<li>Relationship : ' . $owner -> getRelationship() . '</li>';           
                     if ($owner -> getWork() != NULL)
-                        echo '<li>Lavoro: ' . $owner -> getWork() . '</li>';
+                        echo '<li>Work : ' . $owner -> getWork() . '</li>';
                     if ($owner -> getWebsite() != 'http://')
-                        echo '<li>Sito web: <a href="' . $owner -> getWebsite() . '" target="_blank">' . $owner -> getWebsite() . '</a></li>';
+                        echo '<li>Website : <a href="' . $owner -> getWebsite() . '" target="_blank">' . $owner -> getWebsite() . '</a></li>';
                 ?>
             </ul>
             <div id="buttons">
@@ -108,24 +91,24 @@
                 	//controllo quindi se l'id dell'user è uguale a quello dell'owner
                     if ($owner -> getId() == $user -> getId()) {
                     	//se gli id sono uguali allora stampo il pulsante "Modifica la tua stanza"
-                        echo '<a href="editRoom.php" title="Modifica la tua stanza"><input type="button" class="doorBell" value="Modifica la tua stanza" style="width: 280px" /></a>';
+                        echo '<a href="editRoom.php" title="Edit your room"><input type="button" class="doorBell" value="Edit your room" style="width: 280px" /></a>';
                         $opened = 1;
                     } else if ($opened == 0)
                         //se opened è uguale a 0 allora l'user non ha ancora bussato alla porta dell'owner
-                        echo '<input id="ringTheBellButton" type="button" class="doorBell" value="Suona il campanello" style="width: 280px" onClick="openPopupRingTheBell()" />';
+                        echo '<input id="ringTheBellButton" type="button" class="doorBell" value="Ring the bell" style="width: 280px" onClick="openPopupRingTheBell()" />';
                     else if($opened == 2)
 						//se opened è uguale a 2 allora l'user ha già bussato alla porta dell'owner, ma l'owner non ha ancora aperto
-                        echo '<input id="ringTheBellButton" type="button" class="doorBell" value="Hai gi&agrave; suonato il campanello" style="width: 280px" />';                        
+                        echo '<input id="ringTheBellButton" type="button" class="doorBell" value="You have just ringed the bell" style="width: 280px" />';                        
                     else
 						//altrimenti (opened sarà uguale a 1) l'user ha già bussato alla porta dell'owner e gli è stata aperta
-                        echo '<input id="ringTheBellButton" type="button" class="doorBell" value="' . $owner -> getName() . ' ti ha aperto la porta" style="width: 280px" /><input type="button" class="doorBell" value="Lascia un messaggio" onclick="openPopupSendMessage()" style="width: 280px" />';
+                        echo '<input id="ringTheBellButton" type="button" class="doorBell" value="' . $owner -> getName() . ' has opened the door to you" style="width: 280px" /><input type="button" class="doorBell" value="Leave a message" onclick="openPopupSendMessage()" style="width: 280px" />';
                     
 					//controllo l'id di owner per essere sicuro che non sia il Sig. Nessuno
                     if($owner->getId()){
                     	//se non è il Sig. Nessuno controllo se l'owner ha bussato alla porta dell'user e se questa non è ancora stata aperta
                         if($user->heRingsMyBell( $owner->getId() ) == 1 )
 							//se ancora non è stata aperta stampo il pulsante "Aprigli la porta"
-                            echo '<a href="openTheDoor.php?id='.$owner->getId().'"><input type="button" class="doorBell" value="Aprigli la porta" style="width: 280px" /></a>';
+                            echo '<a href="openTheDoor.php?id='.$owner->getId().'"><input type="button" class="doorBell" value="Open the door" style="width: 280px" /></a>';
                     }
                 }
                 ?>
@@ -143,19 +126,15 @@
         <div class="divFooter"></div>
     </div>
     <div id="lastposts">
-        <h2>Ultimi post di <?php echo $owner -> getName();?></h2>
+        <h2>Last <?php echo $owner -> getName();?>'s posts</h2>
         <div id="div"></div>
         <div id="lastpostsContent">
             <?php
             //se il flag è uguale a 0 allora l'id passato in querystring è falso e visualizzo un messaggio di errore
             if ($flag == 1) {
-                echo "<p align='center'>L'ID $id corrisponde a Nessuno... ";
-                //controllo il sesso dell'user per stampare sicurO o sicurA
-                if ($user -> getSex() == 1)
-                    echo "Sei sicuro ";
-                else
-                    echo "Sei sicura ";
-                echo "di aver inserito l'ID esatto?</p>";
+                echo "<p align='center'>This ID doesn't exist in our database...";
+     
+                echo "Are you sure you have entered the correct id?</p>";
             }
 			//se opened è uguale a 1 l'user può visualizzare i post
             if ($opened == 1) {
@@ -187,7 +166,7 @@
                             echo '<img src="./css/img/profile_photo.png">';
                         echo '</div>
 <div class="divFooter">
-<a href="post.php?id=' . $post -> getId() . '">Leggi tutto</a>
+<a href="post.php?id=' . $post -> getId() . '">Read more...</a>
 </div>
 </div>';
                     } else {
@@ -211,13 +190,13 @@
                             echo '<img src="./css/img/profile_photo.png">';
                         echo '</div>
 <div class="divFooter">
-<a href="post.php?id=' . $post -> getId() . '">Leggi tutto</a>
+<a href="post.php?id=' . $post -> getId() . '">Read more</a>
 </div>
 </div>';
                     }
                 }
             } else {
-                echo "<center><h3>Non puoi visualizzare i post di " . $owner -> getName() . "</h3></center>";
+                echo "<center><h3>You can't view " . $owner -> getName() . "'s posts</h3></center>";
             }
             ?>
         </div>

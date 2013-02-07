@@ -95,7 +95,7 @@
         <script>
             function commenta() {
                 var message = document.getElementById("warning");
-                message.innerHTML = "Attendi...";
+                message.innerHTML = "Wait...";
                 var oXHR = new XMLHttpRequest();
                 var text = document.getElementById("allComments").innerHTML;
                 oXHR.open("post", "comment.php", true);
@@ -109,7 +109,7 @@
                             message.innerHTML = "";
                             location.href='#lastcomment';
                         } else {
-                        message.innerHTML = "Si &egrave; verificato un errore. Riprovare";
+                        message.innerHTML = "There was an error. Retry";
                         }
                     }
                 }
@@ -132,14 +132,14 @@
 
 	<body id="body" onload="javascript:init()">
 		<div id="newNotif">
-			Hai una nuova notifica! <a href="notifications.php" id='readNotif'>Leggi</a>
+			You have a new notification! <a href="notifications.php" id='readNotif'>Read</a>
 		</div>
 		<div id="topbar">
 			<div id="topBarLeft" style="padding: 7px;">
-				<a href="home.php" title="Torna alla home">Home</a>
+				<a href="home.php" title="Back to home">Home</a>
 				<?php
 				if ($_SESSION['loggedin'])
-					echo '<a href="room.php?id=' . $user -> getId() . '" title="Vai nella tua stanza">La tua stanza</a>';
+					echo '<a href="room.php?id=' . $user -> getId() . '" title="Go to your room">Your Room</a>';
 				?>
 			</div>
 			<div id="topBarRight" style="padding: 7px;">
@@ -148,14 +148,14 @@
 					echo '<a href="#" id="loggedname">
 ' . $user -> getCompleteName() . ' <span id="notificationsName"></span> &#9660 </a><br />
 <ul class="dx_menu">
-<li><a href="notifications.php">Notifiche <span id="notifications"></span></a></li>
-<li><a href="room.php?id=' . $user -> getId() . '">Vai nella tua stanza</a></li>
-<li><a href="neighbours.php">I tuoi vicini di stanza</a></li>
-<li><a href="editData.php">Modifica i tuoi dati</a></li>
-<li><a href="logout.php">Esci</a></li>
+<li><a href="notifications.php">Notifications <span id="notifications"></span></a></li>
+<li><a href="room.php?id=' . $user -> getId() . '">Go to your room</a></li>
+<li><a href="neighbours.php">Your neighbours</a></li>
+<li><a href="editData.php">Edit your data/a></li>
+<li><a href="logout.php">Logout</a></li>
 </ul>';
 				} else {
-					echo '<a href="index.php" id="loggedname">Accedi / Registrati</a>';
+					echo '<a href="index.php" id="loggedname">Login / Signup</a>';
 					$_SESSION['url'] = $_SERVER['request_uri'];
 				}
 				?>

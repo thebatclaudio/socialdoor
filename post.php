@@ -11,7 +11,7 @@
 	$user = new user($_SESSION['user']);
 	
     if (!isset($_GET['id']) OR !is_numeric($_GET['id']))
-        echo "<h3>Ops! Si &egrave; verificato un errore... Sicuro di aver inserito il link giusto?</h3>";
+        echo "<h3>Ops! There was an error... Are you sure you have entered the correct URL?</h3>";
     else {
         include "./includes/post.class.php";
         include "./includes/mysqlclass.class.php";
@@ -26,14 +26,14 @@
             <div id="header">
                 <div id="right">
                     <form action="search.php" method="post">
-                        <input type="text" id="search" name="search" placeholder="Cerca..." autocomplete="off">
+                        <input type="text" id="search" name="search" placeholder="Search..." autocomplete="off">
                     </form>
                 </div>
                 <div id="left">
-                    <a href="home.php" title="Torna alla home"> <img src="./css/img/logo.png" alt="SocialDoor" id="logo" /> </a>
+                    <a href="home.php" title="Back to home"> <img src="./css/img/logo.png" alt="SocialDoor" id="logo" /> </a>
                 </div>
             </div>
-            <div id="content" style="text-align: center"><h3>Ops! Si &egrave; verificato un errore... Sicuro di aver inserito il link giusto?</h3></div>';
+            <div id="content" style="text-align: center"><h3>Ops! There was an error... Are you sure you have entered the correct URL?</h3></div>';
 			exit();
         }
         $post = mysql_fetch_object($result, 'post');
@@ -49,11 +49,11 @@
     <div id="header">
         <div id="right">
             <form action="search.php" method="post">
-                <input type="text" id="search" name="search" placeholder="Cerca..." autocomplete="off">
+                <input type="text" id="search" name="search" placeholder="Search..." autocomplete="off">
             </form>
         </div>
         <div id="left">
-            <a href="home.php" title="Torna alla home"> <img src="./css/img/logo.png" alt="SocialDoor" id="logo" /> </a>
+            <a href="home.php" title="Back to home"> <img src="./css/img/logo.png" alt="SocialDoor" id="logo" /> </a>
         </div>
     </div>
 <?php
@@ -73,7 +73,7 @@
                     <div class="date">
                         ' . $post -> getDate();
         if ($owner -> getId() == $user -> getId()) {
-            echo ' - <a href="deletePost.php?id=' . $post -> getId() . '" alt="Cancella questo post">Cancella</a>';
+            echo ' - <a href="deletePost.php?id=' . $post -> getId() . '" alt="Delete this post">Delete</a>';
         }
         echo '
                     </div>
@@ -104,7 +104,7 @@
                                 <div class="date">
                                     ' . $obj -> getDate();
             if ($obj -> getIdUser() == $user -> getId()) {
-                echo ' - <a href="#" onClick="deleteComment(' . $obj -> getId() . ')">Cancella</a>';
+                echo ' - <a href="#" onClick="deleteComment(' . $obj -> getId() . ')">Delete</a>';
             }
             echo '
                                 </div>
@@ -132,7 +132,7 @@
             </div>
             ';
 
-        echo ' <h3>Inserisci un commento</h3>
+        echo ' <h3>Leave a comment</h3>
             <div id="div"></div>
             <div class="commentBlock">
                 <div class="inner">
@@ -170,7 +170,7 @@
     </div>
     ';
     } else {
-        echo "Non puoi visualizzare questo post... Se conosci il proprietario, prova a bussare alla sua porta!";
+        echo "You can't view this post... If you know the owner, try to ring his bell!";
     }
     }
     ?>

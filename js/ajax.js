@@ -15,7 +15,7 @@ function refresh()
 					document.getElementById("newNotif").setAttribute("style","display: block");
 					if(oXHR.responseText>1)
 					{
-						document.getElementById("newNotif").innerHTML = "Hai "+oXHR.responseText+" nuove notifiche. <a href='notifications.php' id='readNotif'>Leggi</a>";
+						document.getElementById("newNotif").innerHTML = "You have "+oXHR.responseText+" new notifications. <a href='notifications.php' id='readNotif'>Read</a>";
 					}
 				}
 			} else {
