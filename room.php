@@ -118,7 +118,7 @@
                         echo '<input id="ringTheBellButton" type="button" class="doorBell" value="Hai gi&agrave; suonato il campanello" style="width: 280px" />';                        
                     else
 						//altrimenti (opened sarà uguale a 1) l'user ha già bussato alla porta dell'owner e gli è stata aperta
-                        echo '<input id="ringTheBellButton" type="button" class="doorBell" value="' . $owner -> getName() . ' ti ha aperto la porta" style="width: 280px" /><input type="button" class="doorBell" value="Lascia un messaggio" onclick="openPopupSendMessage()" style="width: 280px" /><input type="button" class="doorBell" value="Chatta" onclick="chatWith(\''.$owner->getUsername().'\')" style="width: 280px" />';
+                        echo '<input id="ringTheBellButton" type="button" class="doorBell" value="' . $owner -> getName() . ' ti ha aperto la porta" style="width: 280px" /><input type="button" class="doorBell" value="Lascia un messaggio" onclick="openPopupSendMessage()" style="width: 280px" />';
                     
 					//controllo l'id di owner per essere sicuro che non sia il Sig. Nessuno
                     if($owner->getId()){
