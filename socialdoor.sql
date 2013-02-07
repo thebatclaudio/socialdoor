@@ -5,17 +5,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-
-CREATE TABLE IF NOT EXISTS `chat` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `from` varchar(255) NOT NULL,
-  `to` varchar(255) NOT NULL,
-  `message` text NOT NULL,
-  `sent` datetime NOT NULL,
-  `recd` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
-
 CREATE TABLE IF NOT EXISTS `comments` (
   `idComment` int(11) NOT NULL AUTO_INCREMENT,
   `idUser` int(11) NOT NULL,
@@ -84,7 +73,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `website` varchar(50) DEFAULT NULL,
   `work` varchar(30) DEFAULT NULL,
   `relationship` varchar(20) DEFAULT NULL,
-  `username` varchar(30) NOT NULL,
   PRIMARY KEY (`idUser`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=176 ;
 
