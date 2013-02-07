@@ -1,78 +1,77 @@
 <?php
-    //script per cambiare la password
+    //script used to change password
     
-    //apro la sessione
+    //open session
     session_start();
-    //se l'utente non è connesso lo reindirizzo alla pagina di login
+    //if user is not logged in i redirect him at login page
     if(!isset($_SESSION['loggedin'])){
         header('location: login.php?error=1');
     }
     
-    //includo le due classi mysqlclass e user
+    //include mysqlclass and user class
     include "./includes/mysqlclass.class.php";
     include "./includes/user.class.php";
     
-    //creo l'oggetto user
+    //create user istance
     $user = new user($_SESSION['user']);
     
-    //includo l'header
+    //include header
     include "header.php";
     
     echo '<div id="container">';
     
-    //se sono state inserite vecchia password, nuova password e la ripetizione della nuova password
+    //if old password, password and repetition of password are inserted
     if(isset($_POST['oldpassword']) AND isset($_POST['password']) AND isset($_POST['password2'])){
-        //se la nuova password e la ripetizione della password sono uguali
+        //if new password and repetition of new password are equals
         if($_POST['password'] == $_POST['password2']){
-            //creo l'oggetto mysql
+            //create mysqlclass istance
             $mysql = new MySqlClass();
-            //mi connetto al db
+            //connect to db
             $mysql->connect();
-            //creo l'hash con la nuova password e con la vecchia password
+            //create hashing with new password and old password
             $hash = hash("sha256",$user->getEmail().$_POST['password']);
             $test = hash("sha256",$user->getEmail().$_POST['oldpassword']);
-            //eseguo la query per cercare l'utente con id e password uguali
+            //execute query to find user with username and password equals
             $result = $mysql->query("SELECT * FROM users WHERE idUser = ".$user->getId()." AND password = '$test'");
-            //se il risultato della query mi da più di una riga
             if(mysql_num_rows($result)>0){
-                //aggiorno la riga
+                //update row
                 $mysql->query("UPDATE users SET password = '$hash' WHERE idUser = ".$user->getId());
-                //disconnetto dal db
+                //disconnect db
                 $mysql->disconnect();
                 echo "<h4>Password cambiata</h4>";
             } else {
-                //altrimenti la password non corrisponde 
+                //else old password is not correct
                 echo "<h4>La vecchia password non corrisponde a quella presente sul database</h4>";
             }
         } else {
-            //altrimenti le due password non corrispondono
+            //else new password and repetition of password are not equals
             echo "<h4>Le due password non corrispondono</h4>";
         }
     } else {
-        //altrimenti la password deve ancora essere inserita
-        //stampo il form
+        //else password are not just inserted
+        //print form
         echo '<div id="header">
 				<div id="right">
 					<form action="search.php" method="post">
-						<input type="text" id="search" name="search" placeholder="Cerca..." autocomplete="off">
+						<input type="text" id="search" name="search" placeholder="Search..." autocomplete="off">
 					</form>
 				</div>
 				<div id="left">
-					<a href="home.php" title="Torna alla home"> <img src="./css/img/logo.png" alt="SocialDoor" id="logo" /> </a>
+					<a href="home.php" title="Back to home"> <img src="./css/img/logo.png" alt="SocialDoor" id="logo" /> </a>
 				</div>
 			</div>';
-		echo "<div id='content'><h2>Cambia password</h2><div class='div'></div>";
+		echo "<div id='content'><h2>Change password</h2><div class='div'></div>";
         echo '<form action="changePassword.php" method="POST"> 
             <table align="center">
                 <tr>
-                    <td>Vecchia password:</td> <td><input type="password" name="oldpassword" maxlength="20"></td>
+                    <td>Old password:</td> <td><input type="password" name="oldpassword" maxlength="20"></td>
                 </tr>
                 <tr>
-            <td>Nuova password:</td> <td><input type="password" name="password" maxlength="20"></td>
+            <td>New password:</td> <td><input type="password" name="password" maxlength="20"></td>
             </tr>
             <tr>
-            <td>Conferma nuova password: </td><td><input type="password" name="password2" maxlength="20"></td>
-           </tr><tr><td></td><td> <input type="submit" value="Cambia" class="submit"></td></tr></table>
+            <td>Repetition new password: </td><td><input type="password" name="password2" maxlength="20"></td>
+           </tr><tr><td></td><td> <input type="submit" value="Change" class="submit"></td></tr></table>
             </form></div></div>';                    
     }
 ?>
