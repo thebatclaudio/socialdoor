@@ -17,9 +17,6 @@
 		<?php endif; ?>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<script src="./js/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" media="screen" href="./css/chat.css?r=<?php echo rand(0, 9999999); ?>" />
-		<link rel="stylesheet" type="text/css" media="screen" href="./css/screen.css?r=<?php echo rand(0, 9999999); ?>" />
-		<link rel="stylesheet" type="text/css" media="screen" href="./css/screen_ie.css?r=<?php echo rand(0, 9999999); ?>" />
 		<script language="javascript">
 			$(document).ready(function() {
 				$('#loggedname').click(function() {
