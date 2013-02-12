@@ -45,47 +45,58 @@ switch($array[2]) {
         $array[2] = "9";
         break;
 }
-//trasformo i mesi da numeri in stringe (es. 1 diventa Gennaio)
-switch($array[1]) {
-    case "01" :
-        $array[1] = "Gennaio";
-        break;
-    case "02" :
-        $array[1] = "Febbraio";
-        break;
-    case "03" :
-        $array[1] = "Marzo";
-        break;
-    case "04" :
-        $array[1] = "Aprile";
-        break;
-    case "05" :
-        $array[1] = "Maggio";
-        break;
-    case "06" :
-        $array[1] = "Giugno";
-        break;
-    case "07" :
-        $array[1] = "Luglio";
-        break;
-    case "08" :
-        $array[1] = "Agosto";
-        break;
-    case "09" :
-        $array[1] = "Settembre";
-        break;
-    case "10" :
-        $array[1] = "Ottobre";
-        break;
-    case "11" :
-        $array[1] = "Novembre";
-        break;
-    case "12" :
-        $array[1] = "Dicembre";
-        break;
+
+if(substr($array[2], -1, 1) == "1"){
+	$array[2].= "st";
+} else if(substr($array[2], -1, 1) == "2"){
+	$array[2].= "nd";
+} else if(substr($array[2], -1, 1) == "3"){
+	$array[2].= "rd";
+} else {
+	$array[2].= "th";
 }
+
+//trasformo i mesi da numeri in stringe (es. 1 diventa Gennaio)
+ switch($array[1]) {
+           	case "01" :
+                $array[1] = "Jenuary";
+                break;
+            case "02" :
+                $array[1] = "February";
+                break;
+            case "03" :
+                $array[1] = "March";
+                break;
+            case "04" :
+                $array[1] = "April";
+                break;
+            case "05" :
+                $array[1] = "May";
+                break;
+            case "06" :
+                $array[1] = "June";
+                break;
+            case "07" :
+                $array[1] = "July";
+                break;
+            case "08" :
+                $array[1] = "August";
+                break;
+            case "09" :
+                $array[1] = "September";
+                break;
+            case "10" :
+                $array[1] = "October";
+                break;
+            case "11" :
+                $array[1] = "November";
+                break;
+            case "12" :
+                $array[1] = "December";
+                break;
+        }
 //creo la stringa con la data in italiano
-$itDate = $array[2] . " " . $array[1] . " " . $array[0] . " <span>alle ore</span> " . substr($array2[1], 0, 5);
+$itDate = $array[2] . " " . $array[1] . " " . $array[0] . " <span>at</span> " . substr($array2[1], 0, 5);
 
 //includo le classi mysqlclass e user
 include "./includes/mysqlclass.class.php";

@@ -151,7 +151,7 @@
 <li><a href="notifications.php">Notifications <span id="notifications"></span></a></li>
 <li><a href="room.php?id=' . $user -> getId() . '">Go to your room</a></li>
 <li><a href="neighbours.php">Your neighbours</a></li>
-<li><a href="editData.php">Edit your data/a></li>
+<li><a href="editData.php">Edit your data</a></li>
 <li><a href="logout.php">Logout</a></li>
 </ul>';
 				} else {
