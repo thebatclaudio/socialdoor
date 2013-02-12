@@ -49,7 +49,7 @@
     
     include "header.php";
 ?>
-<div id="container" style="overflow: scroll">
+<div id="container">
     <div id="header">
         <div id="right">
             <form action="search.php" method="post" style="margin-top: 10px;">

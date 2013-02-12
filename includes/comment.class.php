@@ -60,16 +60,6 @@ class comment {
                 $array[2] = "9";
                 break;
         }
-        
-        if(substr($array[2], -1, 1) == "1"){
-        	$array[2].= "st";
-        } else if(substr($array[2], -1, 1) == "2"){
-        	$array[2].= "nd";
-        } else if(substr($array[2], -1, 1) == "3"){
-        	$array[2].= "rd";
-        } else {
-        	$array[2].= "th";
-        }
         //trasformo i mesi da numeri in stringe (es. 1 diventa Gennaio)
     switch($array[1]) {
             case "01" :
