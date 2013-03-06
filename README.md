@@ -16,6 +16,11 @@ Programming languages
 - PHP
 - SQL (I used mysql php functions, so it can be used only in a MySQL database)
 
+Dependencies
+==========
+
+- jQuery Validate (http://bassistance.de/jquery-plugins/jquery-plugin-validation)
+
 About
 ==========
 
