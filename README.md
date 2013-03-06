@@ -10,7 +10,7 @@ So now, I decided to make it open-source to give people the opportunity to modif
 Programming languages
 ==========
 
-- XHTML
+- (x)HTML
 - CSS
 - JavaScript and jQuery (for animations and AJAX technology)
 - PHP
@@ -19,6 +19,7 @@ Programming languages
 Dependencies
 ==========
 
+- jQuery (http://jquery.com)
 - jQuery Validate (http://bassistance.de/jquery-plugins/jquery-plugin-validation)
 - jCrop (https://code.google.com/p/jcrop/)
 - jQuery miniColors (https://github.com/claviska/jquery-miniColors)
