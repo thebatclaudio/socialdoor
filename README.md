@@ -12,9 +12,9 @@ Programming languages
 
 - XHTML
 - CSS
+- JavaScript and jQuery (for animations and AJAX technology)
 - PHP
 - SQL (I used mysql php functions, so it can be used only in a MySQL database)
-- JavaScript and jQuery (for animations and AJAX technology)
 
 About
 ==========
