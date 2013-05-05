@@ -153,7 +153,7 @@
         mail($email,$oggetto,$messaggio,$header);
         
 		//mando l'email a Mr. Claudio
-        $header = "To: Claudio La Barbera <info@labarberawebdesign.it>\n";
+        $header = "To: Claudio La Barbera <youremail@youremail.it>\n";
         $header .= "From: SocialDoor <noreply@socialdoor.it>\n";
         $oggetto = "Nuovo iscritto: ".$user->getCompleteName();
         $messaggio = "Nuovo iscritto: ".$user->getCompleteName();
