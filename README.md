@@ -28,4 +28,4 @@ About
 ==========
 
 Claudio La Barbera
-http://www.socialdoor.it
+http://socialdoor.labarberawebdesign.it
