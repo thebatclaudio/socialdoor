@@ -9,26 +9,11 @@ if (isset($_SESSION['loggedin'])) {
 	<head>
 		<title>SocialDoor - Accedi o iscriviti e crea la tua stanza</title>
 		<meta content="Claudio La Barbera" name="author" />
-		<meta name="google-site-verification" content="F5VW5s9PhNZ7DW7ZJXqvrsTErdYwecqmuqrCDCi8TtY" />
 		<link rel="shortcut icon" href="http://www.socialdoor.it/css/favicon.ico" />
 		<meta content="SocialDoor &egrave; un social network che ti consente di connetterti con i tuoi amici, condividere pensieri e personalizzare la tua stanza" name="description" />
 		<meta content="socialdoor, social door, socialdoor.it, social network, crea la tua stanza, condividi pensieri, condividi post, personalizza la tua stanza, arreda la tua stanza, crea la tua pagina personale, pagina personale, social networking, social" name="keywords" />
 		<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 		<link href="./css/home.css?u=5" rel="stylesheet" type="text/css" />
-		<script type="text/javascript">
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-29666712-1']);
-			_gaq.push(['_trackPageview']);
-
-			(function() {
-				var ga = document.createElement('script');
-				ga.type = 'text/javascript';
-				ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(ga, s);
-			})();
-		</script>
 	</head>
 	<body>
 		<div id="fb-root"></div>
