@@ -13,6 +13,7 @@
         <!-- Bootstrap -->
         <link href="<?php echo HOME_URL ?>css/bootstrap.css?<?php echo rand(0,99999);?>" rel="stylesheet" media="screen" />
         <script type="text/javascript" src="<?php echo HOME_URL ?>js/bootstrap.js"></script>  
+        <script type="text/javascript" src="<?php echo HOME_URL ?>js/hogan.js"></script>
         <script type="text/javascript" src="<?php echo HOME_URL ?>js/typeahead.js"></script>  
         
         <link href="<?php echo HOME_URL ?>css/socialdoor.css?<?php echo rand(0,99999);?>" rel="stylesheet" media="screen" />

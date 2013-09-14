@@ -219,3 +219,9 @@ p {
 .clear {
 clear: both;
 }
+
+.user-name-search {
+	color: #111;
+	font-size: 10px;
+	padding-left: 2px;
+}

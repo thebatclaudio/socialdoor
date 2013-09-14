@@ -59,6 +59,7 @@ class Route {
             break;
             
             case "post":
+            	$request = new Request();
                 $controller = new postsController();
                 $controller->set("action","viewPost");
                 $controller->set("id",$request->url_elements[2]);
@@ -75,7 +76,8 @@ class Route {
                 $controller = new genController();
                 $controller->set("action","signup");
                 $controller->play();
-            
+            break;
+                
             default:
                 URL::redirect(HOME_URL."404");
             break;

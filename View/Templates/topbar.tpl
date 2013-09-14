@@ -49,9 +49,9 @@
                   </li>
                 </ul>
                 
-                <form class="navbar-form navbar-right" role="search">
+                <form class="navbar-form navbar-right" role="search" action="<?php echo HOME_URL; ?>search" method="GET">
                   <div class="form-group">
-                    <input type="text" class="form-control typeahead" placeholder="Search" id="search" data-provide="typeahead" data-items="10">
+                    <input type="text" name="q" class="form-control typeahead" placeholder="Search" id="search" data-provide="typeahead" data-items="10">
                   </div>
                 </form>
                 
@@ -59,17 +59,26 @@
                     $(document).ready(function(){
                       $.ajax({
                             type: 'get',
-                            url: 'users4autocomplete',
+                            url: '<?php echo HOME_URL; ?>users4autocomplete',
                             data: "",
                             dataType: 'json',
                             success: function(data) {
                                   $('#search').typeahead({                                                                  
                                       name: 'users',
-                                      local: data                                                      
+                                      local: data,
+                                      template: [               
+                                      	'<img class="pull-left topbar-pic" src="<?php echo HOME_URL;?>photos/{{pic}}">',                                                  
+    									'<span class="user-name-search">{{name}}</span>'
+    								  ].join(''),
+    								  engine: Hogan                                                   
                                   });
                             }
                       });
                     });
+                    
+                    $('#search').bind('typeahead:selected', function(obj, datum) {        
+						$(window.location).attr('href', '<?php echo HOME_URL; ?>room/'+datum.id);
+					});
                 </script>
             </div>
             <?php endif; ?>    

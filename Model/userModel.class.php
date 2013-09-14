@@ -29,11 +29,18 @@ class userModel extends Model{
      * @return array (users'name)
      */
     public function getAllUsersJSON(){
-        $sql = "SELECT name, surname FROM users";
+        $sql = "SELECT idUser, name, surname, pic FROM users";
         $users = $this->get_records_sql($sql);
         $returnUsers = array();
         foreach($users as $user){
-            $returnUsers[] = utf8_encode($user->name." ".$user->surname);
+        	$object = new stdClass();
+        	$object->name = $object->value = utf8_encode($user->name." ".$user->surname);
+        	$object->id = $user->idUser;
+        	if($user->pic==1)
+        		$object->pic = $object->id.".jpg";
+        	else
+        		$object->pic = "../img/profile_photo.png";
+            $returnUsers[] = $object;
         }
         return $returnUsers;
     }

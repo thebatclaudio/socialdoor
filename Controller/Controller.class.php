@@ -8,8 +8,7 @@
 		private $action = false;
     	
 		public function set($key,$value){
-		    if(property_exists($this, $key))
-			     $this->$key = $value;
+			$this->$key = $value;
 		}
 		
 		public function get($key){

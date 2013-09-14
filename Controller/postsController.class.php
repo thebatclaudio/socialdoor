@@ -5,7 +5,7 @@
  */
 class postsController extends Controller {
 	
-    public $id;
+    protected $id;
     
     /**
      * Method that returns ten posts
@@ -133,7 +133,7 @@ class postsController extends Controller {
          if($post = $model->getPostById($this->id)){
             View::spit("post",$post); 
          } else {
-            URL::redirect(HOME_URL."404");
+         	URL::redirect(HOME_URL."404");
          }
          
      }
