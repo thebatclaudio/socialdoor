@@ -9,6 +9,11 @@
         protected function notFound(){
             View::spit('404');
         }
+        
+        protected function signup(){
+        	Meta::$title = "Sign Up - ".TITLE;
+        	View::spit('signup');
+        }
 	}
 
 ?>
