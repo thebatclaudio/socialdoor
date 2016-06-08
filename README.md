@@ -24,9 +24,3 @@ Dependencies
 - jQuery Validate (http://bassistance.de/jquery-plugins/jquery-plugin-validation)
 - jCrop (https://code.google.com/p/jcrop/)
 - jQuery miniColors (https://github.com/claviska/jquery-miniColors)
-
-About
-==========
-
-Claudio La Barbera
-http://socialdoor.labarberawebdesign.it
