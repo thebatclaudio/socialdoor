@@ -82,7 +82,7 @@ while ($i < count($est) && $flag == 0) {
 
 if($flag==0){
     include "header.php";
-    die("<div id='container'><h3>Il formato $ext non &egrave; supportato</h3></div>");
+    die("<div id='container'><h3>Format $ext is not supported</h3></div>");
 }
 
 $new_name = $user->getId() . "temp." . $ext;
@@ -91,17 +91,17 @@ $file_name = ($new_name) ? $new_name : $_FILES["upfile"]["name"];
 
 if (trim($_FILES["upfile"]["name"]) == "") {
     include "header.php";
-    die("<div id='container'><h3>Non hai indicato nessuna foto!</div>");
+    die("<div id='container'><h3>You didn't selected a photo!</div>");
 
 }
 
 if (@is_uploaded_file($_FILES["upfile"]["tmp_name"])) {
 
-    @move_uploaded_file($_FILES["upfile"]["tmp_name"], "$upload_dir/$file_name") or die("Impossibile copiare la foto!");
+    @move_uploaded_file($_FILES["upfile"]["tmp_name"], "$upload_dir/$file_name") or die("Unable to copy the photo!");
 
 } else {
 
-    die("Problemi nell'upload della foto! " . $_FILES["upfile"]["name"]);
+    die("Ops! There was an error! " . $_FILES["upfile"]["name"]);
 
 }
 
