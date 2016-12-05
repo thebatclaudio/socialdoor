@@ -13,12 +13,13 @@ Programming languages
 - (x)HTML
 - CSS
 - JavaScript and jQuery (for animations and AJAX technology)
-- PHP
-- SQL (I used mysql php functions, so it can be used only in a MySQL database)
+- PHP (OOP with MVC design pattern)
+- SQL
 
 Dependencies
 ==========
 
+- Twitter Bootstrap (http://getbootstrap.com)
 - jQuery (http://jquery.com)
 - jQuery Validate (http://bassistance.de/jquery-plugins/jquery-plugin-validation)
 - jCrop (https://code.google.com/p/jcrop/)
